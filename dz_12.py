@@ -1,10 +1,11 @@
 from collections import UserDict
 from datetime import datetime
+import pickle
 
 
 class Field:
     def __init__(self, value):
-        self.value = valuevalue
+        self.value = value
 
     def __str__(self):
         return self.value
@@ -83,6 +84,14 @@ class Record:
         return (birthday - today).days
 
 class AddressBook(UserDict):
+    def save_address_book(address_book, filename):
+        with open(filename, "wb") as f:
+            pickle.dump(address_book, f)
+
+    def load_address_book(filename):
+        with open(filename, "rb") as f:
+            return pickle.load(f)
+        
     def add_record(self, record):
         self.data[str(record.name)] = record
 
@@ -108,6 +117,9 @@ class AddressBook(UserDict):
             return record
         else:
             raise StopIteration
+
+
+  
 
 def input_error(func):
     def inner(*args, **kwargs):
