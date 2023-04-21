@@ -28,7 +28,7 @@ class Phone(Field):
         if not number.isdigit():
             raise ValueError("Phone number should contain only digits")
         if len(number) != 12:
-            raise ValueError("Phone number should have 10 digits")
+            raise ValueError("Phone number should have 12 digits")
         return number
 
 
